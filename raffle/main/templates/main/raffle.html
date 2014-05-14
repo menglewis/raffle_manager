@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    Raffle
+    {% if raffle %}
+    <ul>
+    {% for entry in raffle.raffle_entries %}
+    	<li>{{ entry.name }} - {{ entry.quantity }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="{{ url_for('main.raffle', id=raffle.id) }}" method="POST">
+    	{{ form.csrf_token }}
+    	{{ form.name.label }}{{ form.name }}
+        {{ form.quantity.label }}{{ form.quantity }}
+    	<input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}
