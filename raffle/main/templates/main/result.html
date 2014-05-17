@@ -1,0 +1,12 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h2>{% if raffle.raffle_entries %}Winner: {{ raffle.get_winner() }}{% else %}No Entries in the Raffle{% endif %}</h2>
+    <a href="{{ url_for('main.raffle', id=raffle.id) }}">Back to Raffle</a>
+
+</div>
+
+{% endblock %}

@@ -4,7 +4,8 @@
 {% block content %}
 
 <div>
-    Raffle
+    <h2>{{ raffle.name }}</h2>
+    <a class="btn btn-danger" href="{{ url_for('main.raffle_delete', id=raffle.id ) }}">Delete</a>
     {% if raffle %}
     <ul>
     {% for entry in raffle.raffle_entries %}
@@ -18,6 +19,7 @@
         {{ form.quantity.label }}{{ form.quantity }}
     	<input type="submit" value="Submit" class="btn btn-primary">
     </form>
+    {% if raffle.raffle_entries %}<a class="btn btn-primary" href="{{ url_for('main.raffle_winner', id=raffle.id) }}">Select Winner</a>{% endif %}
 </div>
 
 {% endblock %}

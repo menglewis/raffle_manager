@@ -1,3 +1,4 @@
+import random
 from raffle import db
 
 class Raffle(db.Model):
@@ -6,6 +7,14 @@ class Raffle(db.Model):
 
     def __repr__(self):
         return '<Raffle %s>' % self.name
+
+    def get_winner(self):
+        entries = []
+        if self.raffle_entries:
+            for entry in self.raffle_entries:
+                entries.extend((entry.name,)*entry.quantity)
+            return random.choice(entries)
+        return None
 
 class RaffleEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
